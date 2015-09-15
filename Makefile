@@ -25,7 +25,7 @@ help:
 	@echo "dist - package"
 	@echo "install - install the package to the active Python's site-packages"
 
-clean: clean-build clean-pyc clean-test
+clean: clean-build clean-pyc clean-test clean-data
 
 clean-build:
 	rm -fr build/
@@ -44,6 +44,9 @@ clean-test:
 	rm -fr .tox/
 	rm -f .coverage
 	rm -fr htmlcov/
+
+clean-data:
+	rm -fr ml-100k/
 
 lint:
 	flake8 somepython tests
@@ -79,3 +82,8 @@ dist: clean
 
 install: clean
 	python setup.py install
+
+data:
+	wget http://files.grouplens.org/datasets/movielens/ml-100k.zip
+	unzip ml-100k.zip
+	rm ml-100k.zip
